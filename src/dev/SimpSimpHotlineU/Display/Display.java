@@ -1,13 +1,14 @@
 package dev.SimpSimpHotlineU.Display;
 
+import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 
 public class Display {
 	
 	private JFrame frame;
+	private Canvas canvas;
 	
 	private String title;
 	private int windowWidth, windowHeight;
@@ -29,5 +30,18 @@ public class Display {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(windowWidth,windowHeight));
+		canvas.setMaximumSize(new Dimension(windowWidth,windowHeight));
+		canvas.setMinimumSize(new Dimension(windowWidth,windowHeight));
+		
+		frame.add(canvas);
+		frame.pack();
+		
+	}
+	
+	public Canvas getCanvas(){
+		return canvas;
 	}
 }

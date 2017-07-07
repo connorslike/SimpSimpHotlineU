@@ -6,8 +6,8 @@ public class Launch {
 
 	public static void main(String[] args) {
 
-		new Display("Simp! Simp! Hotline-U!");
-		
+		Game game = new Game("Simp! Simp! Hotline-U!");
+		game.start();
 	}
 
 }
