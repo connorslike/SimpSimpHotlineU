@@ -6,7 +6,10 @@ import java.awt.Toolkit;
 import java.awt.image.BufferStrategy;
 
 import dev.SimpSimpHotlineU.Display.Display;
+import dev.SimpSimpHotlineU.gfx.Assets;
 import dev.SimpSimpHotlineU.gfx.ImageLoader;
+import dev.SimpSimpHotlineU.states.GameState;
+import dev.SimpSimpHotlineU.states.State;
 
 public class Game implements Runnable{
 	
@@ -22,6 +25,7 @@ public class Game implements Runnable{
 	
 	private BufferStrategy bs;
 	private Graphics g;
+	private State gameState;
 	
 	public Game(String title){
 
@@ -31,21 +35,48 @@ public class Game implements Runnable{
 	
 	private void init(){
 		display = new Display(title);
+		Assets.init();
+		
+		gameState = new GameState();
 	}
 	
 	public void run(){
 		
 		init();
 		
-		while(running){
-			update();
-			render();
-		}
+		int fps = 60;
+		double timePerTick = 1000000000 / fps;
+		double delta = 0;
+		long now;
+		long lastTime = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
 		
+		while(running){
+			now = System.nanoTime();
+			delta += (now - lastTime) / timePerTick;
+			timer += now - lastTime;
+			lastTime = now;
+			
+			if(delta >= 1) {
+				update();
+				render();
+				ticks++;
+				delta--;
+			}
+			
+			if(timer >= 1000000000){
+				System.out.println("FPS: " + ticks);
+				ticks = 0;
+				timer = 0;
+			}
+		}
 	}
 	
+	int x = 0;
+	
 	private void update(){
-		
+		x += 1;
 	}
 	
 	private void render(){
@@ -58,8 +89,7 @@ public class Game implements Runnable{
 		//clear screen
 		g.clearRect(0, 0, windowWidth, windowHeight);
 		// drawing
-
-		
+		g.drawImage(Assets.player,x,10,null);
 		//end drawing
 		
 		bs.show();
