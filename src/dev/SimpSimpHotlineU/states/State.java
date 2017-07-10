@@ -10,7 +10,7 @@ public abstract class State {
 		currentState = state;
 	}
 	
-	private static State getState(){
+	public static State getState(){
 		return currentState;
 	}
 	
