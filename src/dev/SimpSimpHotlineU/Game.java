@@ -9,6 +9,7 @@ import dev.SimpSimpHotlineU.Display.Display;
 import dev.SimpSimpHotlineU.gfx.Assets;
 import dev.SimpSimpHotlineU.gfx.ImageLoader;
 import dev.SimpSimpHotlineU.states.GameState;
+import dev.SimpSimpHotlineU.states.MenuState;
 import dev.SimpSimpHotlineU.states.State;
 
 public class Game implements Runnable{
@@ -28,6 +29,7 @@ public class Game implements Runnable{
 	
 	//states
 	private State gameState;
+	private State menuState; 
 	
 	public Game(String title){
 
@@ -40,6 +42,7 @@ public class Game implements Runnable{
 		Assets.init();
 		
 		gameState = new GameState();
+		menuState = new MenuState();
 		State.setState(gameState);
 	}
 	

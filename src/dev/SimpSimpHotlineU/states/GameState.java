@@ -1,23 +1,26 @@
 package dev.SimpSimpHotlineU.states;
 
-import java.awt.Graphics;
-
+import dev.SimpSimpHotlineU.entities.creatures.Player;
 import dev.SimpSimpHotlineU.gfx.Assets;
+
+import java.awt.Graphics;
 
 public class GameState extends State{
 
+	private Player player;
+	
+	
 	public GameState(){
-		
+		player = new Player(100,100);
 	}
 	
 	@Override
 	public void update() {
-
+		player.update();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.grass, 0, 0, null);
+		player.render(g);
 	}
-
 }
