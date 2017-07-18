@@ -3,6 +3,8 @@ package dev.SimpSimpHotlineU.Display;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 
 public class Display {
@@ -13,12 +15,11 @@ public class Display {
 	private String title;
 	private int windowWidth, windowHeight;
 	
-	public Display(String title){
+	public Display(String title, int width, int height){
 		
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.title = title;
-		windowWidth = screenSize.width;
-		windowHeight = screenSize.height;
+		windowWidth = width;
+		windowHeight = height;
 		
 		createDisplay();
 	}
@@ -35,6 +36,7 @@ public class Display {
 		canvas.setPreferredSize(new Dimension(windowWidth,windowHeight));
 		canvas.setMaximumSize(new Dimension(windowWidth,windowHeight));
 		canvas.setMinimumSize(new Dimension(windowWidth,windowHeight));
+		canvas.setFocusable(false);
 		
 		frame.add(canvas);
 		frame.pack();
@@ -43,5 +45,9 @@ public class Display {
 	
 	public Canvas getCanvas(){
 		return canvas;
+	}
+	
+	public JFrame getFrame(){
+		return frame;
 	}
 }

@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import dev.SimpSimpHotlineU.Display.Display;
 import dev.SimpSimpHotlineU.gfx.Assets;
 import dev.SimpSimpHotlineU.gfx.ImageLoader;
+import dev.SimpSimpHotlineU.input.KeyManager;
 import dev.SimpSimpHotlineU.states.GameState;
 import dev.SimpSimpHotlineU.states.MenuState;
 import dev.SimpSimpHotlineU.states.State;
@@ -17,9 +18,8 @@ public class Game implements Runnable{
 	private Display display;
 	public String title;
 	
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private int windowWidth = screenSize.width;
-	private int windowHeight = screenSize.height;
+	private int windowWidth = 1000;
+	private int windowHeight = 800;
 	
 	private boolean running = false;
 	private Thread thread;
@@ -31,18 +31,25 @@ public class Game implements Runnable{
 	private State gameState;
 	private State menuState; 
 	
+	//input
+	private KeyManager keyManager;
+	
 	public Game(String title){
 
 		this.title = title;
+		keyManager = new KeyManager();
 			
 	}
 	
 	private void init(){
-		display = new Display(title);
+		
+		display = new Display(title,windowWidth, windowHeight);
+		display.getFrame().addKeyListener(keyManager);
+
 		Assets.init();
 		
-		gameState = new GameState();
-		menuState = new MenuState();
+		gameState = new GameState(this);
+		menuState = new MenuState(this);
 		State.setState(gameState);
 	}
 	
@@ -79,8 +86,9 @@ public class Game implements Runnable{
 		}
 	}
 	
-	
 	private void update(){
+		keyManager.update();
+		
 		if(State.getState() != null){
 			State.getState().update();
 		}
@@ -103,6 +111,10 @@ public class Game implements Runnable{
 		
 		bs.show();
 		g.dispose();
+	}
+	
+	public KeyManager getKeyManager(){
+		return keyManager;
 	}
 	
 	public synchronized void start(){
