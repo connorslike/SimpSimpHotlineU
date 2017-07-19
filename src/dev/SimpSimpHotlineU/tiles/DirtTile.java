@@ -7,7 +7,7 @@ import dev.SimpSimpHotlineU.gfx.Assets;
 public class DirtTile extends Tile{
 
 	public DirtTile(int id) {
-		super(Assets.tree, id);
+		super(Assets.grass, id);
 
 	}
 

@@ -4,18 +4,18 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	private static final int width = 41, height = 50;
+	private static final int width = 70, height = 70;
 	
-	public static BufferedImage player, tree, grass, stone;
+	public static BufferedImage grass, hero, stone, wall;
 	
 	//loads every asset into the game
 	public static void init() {
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadimage("/textures/basic_sprite.jpg"));
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadimage("/textures/spriteSheet.jpg"));
 		
-		player = sheet.crop(0, height, width, height);
-		tree = sheet.crop(width, height, width, height);
-		grass = sheet.crop(2*width, height, width, height);
-		stone = sheet.crop(3*width, height, width, height);
+		grass = sheet.crop(0, height, width, height);
+		hero = sheet.crop(width, height, width, height);
+		stone = sheet.crop(2*width, height, width, height);
+		wall = sheet.crop(3*width, height, width, height);
 	}
 	
 }
