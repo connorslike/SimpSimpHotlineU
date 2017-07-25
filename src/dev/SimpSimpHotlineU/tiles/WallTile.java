@@ -7,7 +7,7 @@ import dev.SimpSimpHotlineU.gfx.Assets;
 public class WallTile extends Tile{
 
 	public WallTile(int id) {
-		super(Assets.stone, id);
+		super(Assets.wall, id);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -7,6 +7,7 @@ import java.awt.image.BufferStrategy;
 
 import dev.SimpSimpHotlineU.Display.Display;
 import dev.SimpSimpHotlineU.gfx.Assets;
+import dev.SimpSimpHotlineU.gfx.GameCamera;
 import dev.SimpSimpHotlineU.gfx.ImageLoader;
 import dev.SimpSimpHotlineU.input.KeyManager;
 import dev.SimpSimpHotlineU.states.GameState;
@@ -34,6 +35,9 @@ public class Game implements Runnable{
 	//input
 	private KeyManager keyManager;
 	
+	//Camera
+	private GameCamera gameCamera;
+	
 	public Game(String title){
 
 		this.title = title;
@@ -45,8 +49,9 @@ public class Game implements Runnable{
 		
 		display = new Display(title,windowWidth, windowHeight);
 		display.getFrame().addKeyListener(keyManager);
-
 		Assets.init();
+		
+		gameCamera = new GameCamera(this,0,0);
 		
 		gameState = new GameState(this);
 		menuState = new MenuState(this);
@@ -115,6 +120,18 @@ public class Game implements Runnable{
 	
 	public KeyManager getKeyManager(){
 		return keyManager;
+	}
+	
+	public GameCamera getGameCamera(){
+		return gameCamera;
+	}
+	
+	public int getWidth(){
+		return windowWidth;
+	}
+	
+	public int getHeight(){
+		return windowHeight;
 	}
 	
 	public synchronized void start(){
