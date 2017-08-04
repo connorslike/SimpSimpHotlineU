@@ -3,6 +3,7 @@ package dev.SimpSimpHotlineU.states;
 import java.awt.Graphics;
 
 import dev.SimpSimpHotlineU.Game;
+import dev.SimpSimpHotlineU.Handler;
 
 public abstract class State {
 
@@ -19,10 +20,12 @@ public abstract class State {
 	
 	//Class
 	
+	protected Handler handler;
+	
 	protected Game game;
 	
-	public State(Game game) {
-		this.game = game;
+	public State(Handler handler) {
+		this.handler = handler;
 	}
 	
 	public abstract void update();
