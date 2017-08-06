@@ -4,6 +4,9 @@ import java.awt.Graphics;
 
 import dev.SimpSimpHotlineU.Game;
 import dev.SimpSimpHotlineU.Handler;
+import dev.SimpSimpHotlineU.entities.EntityManager;
+import dev.SimpSimpHotlineU.entities.creatures.Player;
+import dev.SimpSimpHotlineU.statics.Stone;
 import dev.SimpSimpHotlineU.tiles.Tile;
 import dev.SimpSimpHotlineU.utils.Utils;
 
@@ -13,15 +16,24 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
-
+	//Entites
+	private EntityManager entityManager;
+	
 	
 	public World(Handler handler,String path){
 		this.handler = handler;
+		entityManager = new EntityManager(handler, new Player(handler,100,100));
+		entityManager.addEntity(new Stone(handler,100,300));
+		
+		
 		loadWorld(path);
+		
+		entityManager.getPlayer().setX(spawnX);
+		entityManager.getPlayer().setY(spawnY);
 	}
 	
 	public void update(){
-		
+		entityManager.update();
 	}
 	
 	public void render(Graphics g){
@@ -35,8 +47,15 @@ public class World {
 				getTile(x,y).render(g, (int) (x*Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (y*Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
+		
+		//Entities
+		entityManager.render(g);
 	}
 	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
 	public Tile getTile (int x, int y){
 		if(x < 0 || y < 0 || x >= width || y >= height)
 			return Tile.grassTile;
