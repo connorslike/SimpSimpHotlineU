@@ -2,6 +2,7 @@ package dev.SimpSimpHotlineU;
 
 import dev.SimpSimpHotlineU.gfx.GameCamera;
 import dev.SimpSimpHotlineU.input.KeyManager;
+import dev.SimpSimpHotlineU.input.MouseManager;
 import dev.SimpSimpHotlineU.worlds.World;
 
 public class Handler {
@@ -27,6 +28,10 @@ public class Handler {
 	
 	public KeyManager getKeyManager(){
 		return game.getKeyManager();
+	}
+	
+	public MouseManager getMouseManager(){
+		return game.getMouseManager();
 	}
 	
 	public Game getGame() {

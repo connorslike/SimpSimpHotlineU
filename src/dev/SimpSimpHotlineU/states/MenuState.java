@@ -13,8 +13,8 @@ public class MenuState extends State {
 	
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		if(handler.getMouseManager().isLeftPressed())
+			State.setState(handler.getGame().gameState);
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import dev.SimpSimpHotlineU.gfx.Assets;
 import dev.SimpSimpHotlineU.gfx.GameCamera;
 import dev.SimpSimpHotlineU.gfx.ImageLoader;
 import dev.SimpSimpHotlineU.input.KeyManager;
+import dev.SimpSimpHotlineU.input.MouseManager;
 import dev.SimpSimpHotlineU.states.GameState;
 import dev.SimpSimpHotlineU.states.MenuState;
 import dev.SimpSimpHotlineU.states.State;
@@ -29,11 +30,12 @@ public class Game implements Runnable{
 	private Graphics g;
 	
 	//states
-	private State gameState;
-	private State menuState; 
+	public State gameState;
+	public State menuState; 
 	
 	//input
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	//Camera
 	private GameCamera gameCamera;
@@ -45,6 +47,7 @@ public class Game implements Runnable{
 
 		this.title = title;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 			
 	}
 	
@@ -52,6 +55,11 @@ public class Game implements Runnable{
 		
 		display = new Display(title,windowWidth, windowHeight);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addKeyListener(keyManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 		
 		handler = new Handler(this);
@@ -59,7 +67,7 @@ public class Game implements Runnable{
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		State.setState(gameState);
+		State.setState(menuState);
 	}
 	
 	public void run(){
@@ -124,6 +132,10 @@ public class Game implements Runnable{
 	
 	public KeyManager getKeyManager(){
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager(){
+		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera(){
