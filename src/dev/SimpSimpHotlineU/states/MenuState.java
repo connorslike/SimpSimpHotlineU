@@ -4,22 +4,37 @@ import java.awt.Graphics;
 
 import dev.SimpSimpHotlineU.Game;
 import dev.SimpSimpHotlineU.Handler;
+import dev.SimpSimpHotlineU.gfx.Assets;
+import dev.SimpSimpHotlineU.ui.ClickListener;
+import dev.SimpSimpHotlineU.ui.UIImageButton;
+import dev.SimpSimpHotlineU.ui.UIManager;
 
 public class MenuState extends State {
 
+	private UIManager uiManager;
+	
 	public MenuState(Handler handler){
 		super(handler);
+		uiManager = new UIManager(handler);
+		handler.getMouseManager().setUIManager(uiManager);
+		
+		
+		uiManager.addObject(new UIImageButton(0,0,128,64,Assets.btn_start, new ClickListener(){
+			@Override
+			public void onClick() {
+				handler.getMouseManager().setUIManager(null);
+				State.setState(handler.getGame().gameState);
+			}}));
 	}
 	
 	@Override
 	public void update() {
-		if(handler.getMouseManager().isLeftPressed())
-			State.setState(handler.getGame().gameState);
+		uiManager.update();
 	}
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
+		uiManager.render(g);
 		
 	}
 

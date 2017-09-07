@@ -8,12 +8,16 @@ public class Assets {
 	
 	public static BufferedImage grass, stone, wall, badGuy;
 	public static BufferedImage[] hero_down, hero_up, hero_left, hero_right, hero_static;
-	
+	public static BufferedImage[] btn_start;
 	
 	//loads every asset into the game
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadimage("/textures/spriteSheet.png"));
 		SpriteSheet heroSheet = new SpriteSheet(ImageLoader.loadimage("/textures/HeroSprite.png"));
+		
+		btn_start = new BufferedImage[2];
+		btn_start[0] = sheet.crop(0, height ,  width * 2, height);
+		btn_start[1] = sheet.crop(width * 3, height, width * 2, height);
 		
 		hero_down = new BufferedImage[9];
 		hero_left = new BufferedImage[9];
