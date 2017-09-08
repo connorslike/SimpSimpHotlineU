@@ -11,7 +11,7 @@ public abstract class UIObject {
 	protected Rectangle bounds;
 	protected boolean hovering = false;
 	
-	public UIObject(float x, float y, int width, int heigt){
+	public UIObject(float x, float y, int width, int height){
 		this.x = x;
 		this.y = y;
 		this.width = width;

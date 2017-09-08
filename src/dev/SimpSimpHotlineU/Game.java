@@ -53,7 +53,7 @@ public class Game implements Runnable{
 	
 	private void init(){
 		
-		display = new Display(title,windowWidth, windowHeight);
+		display = new Display(title, windowWidth, windowHeight);
 		display.getFrame().addKeyListener(keyManager);
 		display.getFrame().addMouseListener(mouseManager);
 		display.getFrame().addMouseMotionListener(mouseManager);
@@ -121,9 +121,11 @@ public class Game implements Runnable{
 		//clear screen
 		g.clearRect(0, 0, windowWidth, windowHeight);
 		// drawing
+		
 		if(State.getState() != null){
 			State.getState().render(g);
 		}
+		//g.drawImage(Assets.btn_start[0], 100, 100, null);test
 		//end drawing
 		
 		bs.show();

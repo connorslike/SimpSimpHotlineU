@@ -12,7 +12,7 @@ public class UIManager {
 	private ArrayList<UIObject> objects;
 	
 	public UIManager(Handler handler){
-		this.setHandler(handler);
+		this.handler = handler;
 		objects = new ArrayList<UIObject>();
 	}
 	
@@ -24,6 +24,7 @@ public class UIManager {
 	public void render(Graphics g){
 		for(UIObject o : objects)
 			o.render(g);
+		
 	}
 	
 	public void onMouseMove(MouseEvent e){

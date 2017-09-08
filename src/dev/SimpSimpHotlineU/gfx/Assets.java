@@ -17,7 +17,7 @@ public class Assets {
 		
 		btn_start = new BufferedImage[2];
 		btn_start[0] = sheet.crop(0, height ,  width * 2, height);
-		btn_start[1] = sheet.crop(width * 3, height, width * 2, height);
+		btn_start[1] = sheet.crop(width * 2, height, width * 2, height);
 		
 		hero_down = new BufferedImage[9];
 		hero_left = new BufferedImage[9];
