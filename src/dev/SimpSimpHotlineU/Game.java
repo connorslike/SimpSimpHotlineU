@@ -13,6 +13,7 @@ import dev.SimpSimpHotlineU.input.KeyManager;
 import dev.SimpSimpHotlineU.input.MouseManager;
 import dev.SimpSimpHotlineU.states.GameState;
 import dev.SimpSimpHotlineU.states.MenuState;
+import dev.SimpSimpHotlineU.states.StartMenuState;
 import dev.SimpSimpHotlineU.states.State;
 
 public class Game implements Runnable{
@@ -32,6 +33,7 @@ public class Game implements Runnable{
 	//states
 	public State gameState;
 	public State menuState; 
+	public State startMenuState; 
 	
 	//input
 	private KeyManager keyManager;
@@ -67,7 +69,8 @@ public class Game implements Runnable{
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		State.setState(menuState);
+		startMenuState = new StartMenuState(handler);
+		State.setState(startMenuState);
 	}
 	
 	public void run(){
