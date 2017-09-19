@@ -28,6 +28,8 @@ public class Stone extends StaticEntity{
 		g.drawImage(Assets.stone, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()),width,height,null);
 	}
 	
-	
+	public void die(){
+
+	}
 
 }
